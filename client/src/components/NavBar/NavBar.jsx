@@ -18,13 +18,13 @@ import { Tooltip } from '@mui/material';
 import { pink } from '@mui/material/colors';
 
 const StyledAppBar = styled(AppBar)(({ darkMode }) => ({
-  backgroundColor: darkMode ? 'black' : '#002147', // Change color based on darkMode
+  backgroundColor: darkMode ? "black" : "#002147", // Change color based on darkMode
 }));
 
-const Logo = styled('img')({
-  width: '220px',
-  height: 'auto',
-  marginRight: 'auto',
+const Logo = styled("img")({
+  width: "220px",
+  height: "auto",
+  marginRight: "auto",
 });
 
 const StyledButton = styled(Button)(({ isActive }) => ({
@@ -37,11 +37,11 @@ const StyledButton = styled(Button)(({ isActive }) => ({
   },
 }));
 
-const MenuContainer = styled('div')({
-  display: 'flex',
-  alignItems: 'center',
-  gap: '10px',
-  marginLeft: 'auto',
+const MenuContainer = styled("div")({
+  display: "flex",
+  alignItems: "center",
+  gap: "10px",
+  marginLeft: "auto",
 });
 
 const MobileMenu = styled('div')(({ open }) => ({
@@ -65,7 +65,7 @@ const MobileMenu = styled('div')(({ open }) => ({
 
 
 const MobileMenuButton = styled(IconButton)({
-  fill: '#fff',
+  fill: "#fff",
 });
 
 function Navbar({ darkMode, toggleDarkMode }) {
@@ -83,17 +83,17 @@ function Navbar({ darkMode, toggleDarkMode }) {
 
   const handleLogout = () => {
     try {
-      const token = sessionStorage.getItem('token');
+      const token = sessionStorage.getItem("token");
       if (token) {
-        sessionStorage.removeItem('token');
+        sessionStorage.removeItem("token");
       }
     } catch (error) {
-      console.error('Error removing token from sessionStorage:', error);
+      console.error("Error removing token from sessionStorage:", error);
     }
-     
+
     setUserLoggedIn(false);
-    localStorage.removeItem('token');
-    navigate('/', { replace: true });
+    localStorage.removeItem("token");
+    navigate("/", { replace: true });
     showToast("success", "", "Logged out successfully");
   };
 
@@ -106,11 +106,17 @@ function Navbar({ darkMode, toggleDarkMode }) {
 
   return (
     <StyledAppBar position="sticky" darkMode={darkMode}>
-      <Toolbar style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
+      <Toolbar
+        style={{
+          display: "flex",
+          justifyContent: "space-between",
+          alignItems: "center",
+        }}
+      >
         <IconButton component={Link} to="/">
           <Logo src={logo} alt="Logo" />
         </IconButton>
-        
+
         {isMobile ? (
           <>
           <Toolbar style={{display: "flex", justifyContent: 'flex-end', alignItems: "center"}}>
@@ -121,7 +127,7 @@ function Navbar({ darkMode, toggleDarkMode }) {
             </Tooltip>
             
             <MobileMenuButton onClick={handleMenuClick}>
-              <MenuIcon sx={{ fontSize: '2rem' }} />
+              <MenuIcon sx={{ fontSize: "2rem" }} />
             </MobileMenuButton>
             </Toolbar>
             
@@ -194,7 +200,7 @@ function Navbar({ darkMode, toggleDarkMode }) {
                 to={userLoggedIn ? "#" : "/login"}
                 isActive={isActive('/login')}
                 onClick={userLoggedIn ? handleLogout : null}
-                startIcon={<AccountCircleIcon sx={{ fontSize: '1.5rem' }} />}
+                startIcon={<AccountCircleIcon sx={{ fontSize: "1.5rem" }} />}
                 fullWidth
                 style={{ marginBottom: '15px' }} // Add margin for spacing
               >
@@ -229,7 +235,7 @@ function Navbar({ darkMode, toggleDarkMode }) {
               to={userLoggedIn ? "#" : "/login"}
               isActive={isActive('/login')}
               onClick={userLoggedIn ? handleLogout : null}
-              startIcon={<AccountCircleIcon sx={{ fontSize: '1.5rem' }} />}
+              startIcon={<AccountCircleIcon sx={{ fontSize: "1.5rem" }} />}
             >
               {userLoggedIn ? "Logout" : "Login"}
             </StyledButton>
